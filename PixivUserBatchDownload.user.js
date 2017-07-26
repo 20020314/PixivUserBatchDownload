@@ -5,12 +5,11 @@
 // @description	Batch download pixiv user's images in one key.
 // @description:zh-CN	一键批量下载P站画师的全部作品
 // @include		*://www.pixiv.net/*
-// @include		*://touch.pixiv.net/*
 // @exclude		*://www.pixiv.net/*mode=manga&illust_id*
 // @exclude		*://www.pixiv.net/*mode=big&illust_id*
 // @exclude		*://www.pixiv.net/*mode=manga_big*
 // @exclude		*://www.pixiv.net/*search.php*
-// @version		5.2.17
+// @version		5.2.18
 // @copyright	2017+, Mapaler <mapaler@163.com>
 // @icon		http://www.pixiv.net/favicon.ico
 // @grant       GM_xmlhttpRequest
@@ -900,6 +899,11 @@ var Aria2 = (function() {
     }
 })();
 
+//创建用户集合
+var UserAssemble = (function() {
+
+})();
+
 /*
  * 自定义函数区
  */
@@ -909,22 +913,28 @@ function buildbtnStart(touch) {
     {
 
     } else {
-        var btnStart = document.createElement("a");
+        var btnStart = document.createElement("div");
         btnStart.id = "pubd-start";
         btnStart.className = "pubd-start";
         //添加图标
-        var icon = document.createElement("i");
-        icon.className = "pubd-icon";
-        btnStart.appendChild(icon);
+        var star = document.createElement("i");
+        star.className = "pubd-star";
+        btnStart.appendChild(star);
+        var btnMenu = document.createElement("a");
+        btnMenu.id = "menubtn";
+        btnMenu.className = "menubtn";
+        btnStart.appendChild(btnMenu);
         //添加文字
         var span = document.createElement("span");
         span.className = "text";
         span.innerHTML = "使用PUBD扒图";
-        btnStart.appendChild(span);
+        btnMenu.appendChild(span);
+
+        star.addEventListener("click", function() { this.classList.toggle("pubd-star-on") });
 
         //鼠标移入和按下都起作用
         //btnStart.addEventListener("mouseenter",function(){pubd.menu.show()});
-        btnStart.addEventListener("click", function() { pubd.menu.classList.toggle("display-none") });
+        btnMenu.addEventListener("click", function() { pubd.menu.classList.toggle("display-none") });
     }
     return btnStart;
 }
@@ -955,7 +965,7 @@ function buildbtnMenu(touch) {
         */
         var menu = new pubdMenu(touch, "pubd-menu-main");
         menu.id = "pubd-menu";
-        menu.add("下载该画师", "", function() {
+        menu.add("下载该画师", "pubd-menu-downthis", function() {
             pubd.dialog.downthis.show();
             menu.hide();
         });
