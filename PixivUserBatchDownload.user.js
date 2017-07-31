@@ -2269,7 +2269,7 @@ function sendToAria2_illust(illusts, userInfo, scheme, downP, callback) {
 //作品每页循环递归输出
 function sendToAria2_Page(illust, page, userInfo, scheme, downP, callback) {
     if (pubd.downbreak) {
-        spawnNotification("下载已停止", "中断下载");
+        spawnNotification("已停止发送新的下载链接到Aria2，但Aria2仍然还在继续下载，如需完全停止请对Aria2进行操作。", userInfo.user.profile_image_urls.medium, "中断下载");
         pubd.downbreak = false;
         return;
     }
