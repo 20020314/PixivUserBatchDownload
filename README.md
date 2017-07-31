@@ -22,6 +22,7 @@ PUBD主体部分是采用JavaScript语言编写的用户脚本，v5.0版分离�
 ![结构图](http://ww1.sinaimg.cn/large/6c84b2d6gw1fbnmzq72bdj20jj0ff3za.jpg)
 
 ## 后续功能开发状态
+- [ ] 导出设置
 - [x] 下载逐项发送（不卡死）
 - [x] 输出文本信息（下载列表）
 - [ ] 多画师批量下载
