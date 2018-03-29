@@ -2388,12 +2388,10 @@ function startBuild(touch, loggedIn) {
         }
         pubd.downSchemes = NewDownSchemeArrayFromJson(GM_getValue("pubd-downschemes"));
 
-        var btnStartInsertPlace = document.getElementsByClassName("user-relation")[0];
-        if (!btnStartInsertPlace) btnStartInsertPlace = document.getElementsByClassName("badges")[0]; //自己的页面
-        var btnStartBox = document.createElement("li");
+        var btnStartInsertPlace = document.querySelector("._user-profile-card") || document.querySelector(".ui-layout-west div");
+        var btnStartBox = document.createElement("div");
         if (!loggedIn) {
-            var btnStartInsertPlace = document.getElementsByClassName("introduction")[0];
-            var btnStartBox = document.createElement("div");
+            btnStartInsertPlace = document.querySelector(".introduction");
         }
 
         btnStartInsertPlace.appendChild(showAlert); //添加警告
